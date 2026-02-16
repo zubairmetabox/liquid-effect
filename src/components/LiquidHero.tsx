@@ -76,7 +76,7 @@ export default function LiquidHero() {
             /* Sub-text */
             ctx.fillStyle = textColor;
             ctx.globalAlpha = 0.35;
-            const subFontSize = Math.max(12, w * 0.011);
+            const subFontSize = Math.max(10, Math.min(w * 0.011, 16));
             ctx.font = `600 ${subFontSize}px "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif`;
             ctx.textAlign = "center";
             ctx.letterSpacing = "0.25em";
@@ -85,7 +85,7 @@ export default function LiquidHero() {
             /* Main heading */
             ctx.globalAlpha = 1;
             ctx.letterSpacing = "-0.03em";
-            const fontSize = Math.min(w * 0.11, h * 0.16);
+            const fontSize = Math.min(w * 0.11, h * 0.16, 140);
             ctx.font = `800 ${fontSize}px "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif`;
             ctx.textBaseline = "middle";
 
@@ -109,7 +109,7 @@ export default function LiquidHero() {
             /* Tagline */
             ctx.globalAlpha = 0.35;
             ctx.letterSpacing = "0.04em";
-            const tagFontSize = Math.max(12, w * 0.012);
+            const tagFontSize = Math.max(10, Math.min(w * 0.012, 16));
             ctx.font = `400 ${tagFontSize}px "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif`;
             ctx.fillStyle = textColor;
             ctx.fillText(
@@ -178,9 +178,9 @@ export default function LiquidHero() {
             {/* Controls toggle button */}
             <button
                 onClick={() => setPanelOpen((v) => !v)}
-                className="absolute top-20 right-4 z-10 flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-4 py-2 text-xs font-semibold text-white/80 backdrop-blur-xl transition-all hover:bg-black/60 hover:text-white"
+                className="absolute top-20 right-4 z-10 flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[11px] font-semibold text-white/80 backdrop-blur-xl transition-all hover:bg-black/60 hover:text-white sm:px-4 sm:py-2 sm:text-xs"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round"
                         d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
@@ -190,12 +190,12 @@ export default function LiquidHero() {
 
             {/* Slide-in controls panel */}
             <div
-                className={`absolute top-16 right-0 z-10 h-[calc(100vh-4rem)] w-[340px] transform transition-transform duration-300 ease-out ${panelOpen ? "translate-x-0" : "translate-x-full"
+                className={`absolute top-16 right-0 z-10 h-[calc(100vh-4rem)] w-[280px] transform transition-transform duration-300 ease-out sm:w-[340px] ${panelOpen ? "translate-x-0" : "translate-x-full"
                     }`}
             >
-                <div className="h-full overflow-y-auto border-l border-white/10 bg-black/70 p-5 backdrop-blur-2xl">
+                <div className="h-full overflow-y-auto border-l border-white/10 bg-black/70 p-4 backdrop-blur-2xl sm:p-5">
                     <div className="mb-4 flex items-center justify-between">
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-white/60 sm:text-sm">
                             Live Controls
                         </h3>
                         <button
@@ -209,28 +209,7 @@ export default function LiquidHero() {
                 </div>
             </div>
 
-            {/* Scroll prompt */}
-            <div className="absolute inset-x-0 bottom-8 z-[2] flex justify-center pointer-events-none">
-                <div className="flex flex-col items-center gap-2 animate-bounce">
-                    <span className="text-xs font-medium uppercase tracking-widest text-white/40">
-                        Scroll to explore
-                    </span>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white/30"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                        />
-                    </svg>
-                </div>
-            </div>
+
         </section>
     );
 }
